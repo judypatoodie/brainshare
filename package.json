@@ -2,9 +2,10 @@
   "name": "blocipedia-node",
   "version": "1.0.0",
   "description": "An app similar to wikipedia that allows users to create, collab, and share wikis",
-  "main": "\u001b[D\u001b[D\u001b[D\u001bsrc/server.js)",
+  "main": "src/server.js)",
   "scripts": {
-    "test": "export NODE_ENV=test && jasmine\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b&& jasmine"
+    "test": "set NODE_ENV=test&& jasmine",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,21 @@
   "bugs": {
     "url": "https://github.com/judypatoodie/blocipedia-node/issues"
   },
-  "homepage": "https://github.com/judypatoodie/blocipedia-node#readme"
+  "homepage": "https://github.com/judypatoodie/blocipedia-node#readme",
+  "devDependencies": {
+    "jasmine": "^3.0.0",
+    "request": "^2.83.0",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.32.6"
+  }
 }
