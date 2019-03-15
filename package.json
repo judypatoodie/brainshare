@@ -1,0 +1,19 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "An app similar to wikipedia that allows users to create, collab, and share wikis",
+  "main": "\u001b[D\u001b[D\u001b[D\u001bsrc/server.js)",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b&& jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judypatoodie/blocipedia-node.git"
+  },
+  "author": "Judy Huynh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/judypatoodie/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/judypatoodie/blocipedia-node#readme"
+}
