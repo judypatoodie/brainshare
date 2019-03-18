@@ -3,27 +3,31 @@ const passport = require("passport");
 
 module.exports = {
   create(req, res, next){
-    let newUser = {
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-      passwordConfirmation: req.body.passwordConfirmation
-    };
 
-    userQueries.createUser(newUser, (err, user) => {
-      if(err){
-        req.flash("error", err);
-        res.redirect("/users/sign_up");
-      } else {
+          console.log("create a user");
+          console.log(JSON.stringify(req.body));
+               let newUser = {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          passwordConfirmation: req.body.passwordConfirmation
+               };
 
-        passport.authenticate("local")(req, res, () => {
-          req.flash("notice", "You've successfully signed in!");
-          res.redirect("/");
-          console.log("User created");
-        })
-      }
-    });
-  },
+          console.log(JSON.stringify(newUser));
+               userQueries.createUser(newUser, (err, user) => {
+                 if(err){
+                   req.flash("error", err);
+                   res.redirect("/users/sign_up");
+                 } else {
+
+
+                   passport.authenticate("local")(req, res, () => {
+                     req.flash("notice", "You've successfully signed in!");
+                     res.redirect("/");
+                   })
+                 }
+               });
+             },
 
   signUp(req, res, next) {
     res.render("users/sign_up");
