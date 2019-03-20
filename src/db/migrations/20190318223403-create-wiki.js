@@ -25,15 +25,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      topicId: {
+      wikiId: {
       type: Sequelize.INTEGER,
       onDelete: "CASCADE",
       references: {
-        model: "Wiki",
+        model: "Wikis",
         key: "id",
         as: "wikiId",
       },
-     } 
+     }
     });
   },
   down: (queryInterface, Sequelize) => {
