@@ -3,7 +3,7 @@
 const faker = require("faker");
 
 let users = [{
-     id: 10,
+    id: 1,
      username: faker.name.findName(),
      email: faker.internet.email(),
      password: "password1",
@@ -12,7 +12,7 @@ let users = [{
      role: "standard"
      },
      {
-     id: 20,
+     id: 2,
      username: faker.name.findName(),
      email: faker.internet.email(),
      password: "password2",
