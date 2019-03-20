@@ -1,7 +1,12 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
+const pubKey = process.env.PUBLISHABLE_KEY;
 
 module.exports = {
+  index(req, res, next) {
+       res.redirect("/");
+     },
+
   create(req, res, next){
        let newUser = {
          username: req.body.username,
@@ -49,5 +54,21 @@ module.exports = {
   req.flash("notice", "You've successfully signed out!");
   res.redirect("/");
   },
+
+  upgradeForm(req, res, next){
+    res.render("users/upgrade_downgrade", {publishableKey});
+  },
+
+  upgrade(req, res, next){
+    userQueries.upgrade(req.user.dataValues.id);
+    res.render("users/payment_response");
+  },
+
+  downgrade(req, res, next){
+    userQueries.downgrade(req.user.dataValues.id);
+    req.flash("notice", "You are no longer a premium user!");
+    res.redirect("/");
+  }
+
 
 }
