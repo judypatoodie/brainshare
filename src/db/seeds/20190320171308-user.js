@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 const faker = require("faker");
 
 let users = [{

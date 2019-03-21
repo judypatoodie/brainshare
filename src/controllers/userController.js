@@ -1,6 +1,6 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
-const pubKey = process.env.PUBLISHABLE_KEY;
+const publishableKey = process.env.PUBLISHABLE_KEY;
 
 module.exports = {
   index(req, res, next) {
@@ -61,7 +61,7 @@ module.exports = {
 
   upgrade(req, res, next){
     userQueries.upgrade(req.user.dataValues.id);
-    res.render("users/payment_response");
+    res.render("users/upgradeOrDowngrade");
   },
 
   downgrade(req, res, next){

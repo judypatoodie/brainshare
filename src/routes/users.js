@@ -13,4 +13,5 @@ router.post("/users/:id/upgrade", userController.upgrade);
 router.get("/users/downgrade", userController.downgrade);
 router.post("/users/:id/downgrade", userController.downgrade);
 
+
 module.exports = router;
