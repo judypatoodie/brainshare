@@ -15,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       private: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.BOOLEAN
         allowNull: false,
     	defaultValue: false
       },
@@ -27,16 +27,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      userId: {
-    	type: Sequelize.INTEGER,
-    	onDelete: "CASCADE",
-      allowNull: false,
+      wikiId: {
+      type: Sequelize.INTEGER,
+      onDelete: "CASCADE",
       references: {
-        model: "Users",
+        model: "Wikis",
         key: "id",
-        as: "userId"
-        }
-      }
+        as: "wikiId",
+      },
+     }
     });
   },
   down: (queryInterface, Sequelize) => {
