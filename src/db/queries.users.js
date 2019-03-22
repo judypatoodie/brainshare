@@ -1,4 +1,5 @@
 const User = require("./models").User;
+require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const sgMail = require('@sendgrid/mail');
 const SENDGRID_API_KEY ='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';
@@ -12,7 +13,8 @@ module.exports = {
     return User.create({
       username: newUser.username,
       email: newUser.email,
-      password: hashedPassword
+      password: hashedPassword,
+      userId: newUser.id
     })
     .then((user) => {
       const msg = {

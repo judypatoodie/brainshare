@@ -9,7 +9,7 @@
         <main class="container">
             <% include ../static/partials/messages.ejs %>
 
-            <% if(currentUser && currentUser.role == "standard") { %>
+            <% if(currentUser.role == "standard") { %>
 	    	<header class="jumbotron my-3">
             	  <h1 class="display-5">Upgrade to premium membership.</h1>
 	    	  <p class="lead">No contract. Cancel anytime. $15 a month.</p>
@@ -29,8 +29,8 @@
     			    data-locale="auto">
                 	</script>
             	</form>
-            <% } else { %>
-              <% if(currentUser.role === "premium"); { %>
+            <% } else if(currentUser.role === "premium") { %>
+              <%  { %>
             	<h1>Are you sure you want to downgrade from The Archive's premium membership?</h1>
 
             	<form action="/users/<%=currentUser.id%>/downgrade" method="POST">
