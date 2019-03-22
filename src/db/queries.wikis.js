@@ -15,10 +15,8 @@ module.exports = {
   },
 
   addWiki(newWiki, callback){
-        return Wiki.create({
-          title: newWiki.title,
-          description: newWiki.description
-        })
+    console.log(newWiki);
+        return Wiki.create(newWiki)
         .then((wiki) => {
           callback(null, wiki);
         })
@@ -66,5 +64,21 @@ module.exports = {
       callback(err);
      });
    });
+ },
+
+ downgradePrivateWikis(id){
+   return Wiki.all()
+   .then((wikis) => {
+       wikis.forEach((wiki) => {
+           if(wiki.userId == id && wiki.private == true){
+               wiki.update({
+                   private: false
+               })
+           }
+       })
+   })
+   .catch((err) => {
+       callback(err);
+   })
  },
 }
