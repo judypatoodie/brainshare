@@ -1,5 +1,6 @@
 const Wiki = require("./models").Wiki;
 
+
 module.exports = {
 
   getAllWikis(callback){

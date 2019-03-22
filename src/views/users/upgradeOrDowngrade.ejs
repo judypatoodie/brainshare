@@ -30,7 +30,7 @@
                 	</script>
             	</form>
             <% } else { %>
-              <% if(currentUser.role === "premium"); { %>
+              <% if(currentUser.role === "premium") { %>
             	<h1>Are you sure you want to downgrade from The Archive's premium membership?</h1>
 
             	<form action="/users/<%=currentUser.id%>/downgrade" method="POST">
