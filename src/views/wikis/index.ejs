@@ -9,21 +9,54 @@
 
       <h1>Wikis</h1>
        <% if(currentUser) { %>
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
+      <a href="/wikis/new" class="btn btn-success">New Public Wiki</a>
        <% } %>
 
 
 
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
-            <% if( currentUser ? (wiki.private == true && wiki.userId == currentUser.id) || wiki.private == false : wiki.private == false ) { %>
+            <% if( wiki.private == false ) { %>
           <li class="list-group-item">
             <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
           </li>
           <% } %>
         <% }) %>
       </ul>
+      <% if(currentUser && (currentUser.role == 'premium' || currentUser.role == 'admin'))
+      { %>
+      <h1 class="wiki-list-header">Your Private Wikis</h1>
+      <ul class="list-group">
+        <% let count = 0 %> <% wikis.forEach((wiki) => { %> <% if(wiki.private
+        && (currentUser.id == wiki.userId)) { %> <% count++ %>
+        <li class="list-group-item">
+          <a href="/wikis/<%= wiki.id %>">
+            <%- `${count}. ` %><%- ` ${wiki.title}` %></a
+          >
+        </li>
+        <% } %> <% }) %>
+      </ul>
+      <br />
+      <a href="/wikis/new" class="btn btn-success">New Private Wiki</a>
+      <% } %>
+      <br />
 
+      <% if(currentUser && (currentUser.role == 'standard')) { %>
+      <h1 class="wiki-list-header">Collaborate</h1>
+      <ul class="list-group">
+        <% let count = 0 %> <% wikis.forEach((wiki) => { %> <%
+        wiki.collaborators.forEach((collaborator) => { %> <% if (currentUser.id
+        == collaborator.userId) { %> <% count++ %>
+        <li class="list-group-item">
+          <a href="/wikis/<%= wiki.id %>"
+            ><span class="badge badge-success badge-pill"
+              ><%= `${count} ` %></span
+            ><br /><%- ` ${wiki.title}` %></a
+          >
+        </li>
+        <% } %> <% }) %> <% }) %> <% } %>
+      </ul>
+      <br />
     </main>
   </body>
 </html>
