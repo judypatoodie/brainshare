@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Collaborator.belongsTo(models.Wiki, {
-      foreignKey: "userId",
+      foreignKey: "wikiId",
       onDelete: "CASCADE"
     });
   };
