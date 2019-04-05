@@ -31,7 +31,7 @@ module.exports = {
             let newWiki = {
               title: req.body.title,
               description: req.body.description,
-              private: req.body.private,
+              private: req.body.private ||false,
   	          userId: req.user.id
             };
     wikiQueries.addWiki(newWiki, (err, wiki) => {
@@ -52,8 +52,9 @@ module.exports = {
       if(err || wiki == null){
         res.redirect(404, "/");
       } else {
+
           markdownView = markdown.toHTML(wiki.description);
-        res.render("wikis/show", {wiki, markdownView});
+          res.render("wikis/show", {wiki, markdownView});
       }
     });
   },
@@ -71,6 +72,7 @@ module.exports = {
   edit(req, res, next){
   wikiQueries.getWiki(req.params.id, (err, wiki) => {
     if(err || wiki == null){
+      console.log(err)
       res.redirect(404, "/");
     } else {
       res.render("wikis/edit", {wiki});
@@ -83,7 +85,8 @@ module.exports = {
     wikiQueries.updateWiki(req.params.id, req.body, (err, wiki) => {
 
       if(err || wiki == null){
-        res.redirect(404, `/wikis/${req.params.id}/edit`);
+        req.flash("notice", "You do not have permission to update Wiki");
+        res.redirect(404, `/wikis/${req.params.id}`);
       } else {
         res.redirect(`/wikis/${wiki.id}`);
       }
