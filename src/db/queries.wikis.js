@@ -25,37 +25,37 @@ module.exports = {
     })
   },
 
-  addWiki(newWiki, callback) {
-    return Wiki.create(newWiki)
-    .then( wiki => {
-      wiki.setCollaborators(wiki.private ? [wiki.userId] : null)
-      .then( collaborators => {
-        callback(null, wiki);
-      })
-      .catch( err => {
-        callback(err);
-      });
-    })
-    .catch( err => {
-      console.log(err);
-      callback(err);
-    });
-  },
-
-  getWiki(id, callback) {
-      return Wiki.findById(id)
-      .then( wiki => {
-        wiki.getCollaborators()
-        .then( collaborators => {
-          callback(null, wiki, collaborators);
+  addWiki(newWiki, callback){
+        return Wiki.create({
+            title: newWiki.title,
+            description: newWiki.description,
+            private: newWiki.private,
+            userId: newWiki.userId
         })
-        .catch( err => {
+        .then((wiki) => {
+            callback(null, wiki);
+        })
+        .catch((err) => {
+            callback(err);
+        })
+    },
+    getWiki(id, callback) {
+      console.log("Getting wikis");
+
+      return Wiki.findById(id, {
+
+        include: [
+          { model: Collaborator, as: 'collaborators', include: [{ model: User }] }
+        ]
+      })
+        .then(wiki => {
+          console.log(wiki.collaborators);
+          callback(null, wiki);
+        })
+        .catch(err => {
+          console.log(err);
           callback(err);
         });
-      })
-      .catch( err => {
-        callback(err);
-      });
     },
 
   deleteWiki(id, callback){

@@ -5,7 +5,7 @@
   </head>
   <body>
     <% include ../static/partials/navbar.ejs %>
-
+<% include ../static/partials/messages.ejs %>
     <main class="container">
       <h1><%= wiki.title %></h1>
 
@@ -29,11 +29,12 @@
                         <% wiki.collaborators.forEach((collaborator) => {  %>
                             <li class="list-group-item">
 
-                                  <%= collaborator.User.name %>
+                                  <%= collaborator.User.email %>
                                   <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
-                                    <form action="/wikis/<%= wiki.id %>/collaborators/remove" method="post">
+                      <form  action="/wikis/<%= wiki.id%>/collaborators/<%= collaborator.userId %>/remove" method="post">
                                       <button type="submit" class="btn btn-danger">Remove</button>
-                                      <input type="hidden" value="<%= collaborator.User.id %>" class="form-control" name="collaborator" >
+                                      <input type="hidden" class="form-control" value="<%= `${collaborator.userId}` %>"
+                        style="text-align: center" aria-label="Text input with checkbox" readonly="readonly">
                                     </form>
                                 <% } %>
                            </li>

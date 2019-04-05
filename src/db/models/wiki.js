@@ -30,5 +30,6 @@ module.exports = (sequelize, DataTypes) => {
       as: "collaborators"
     });
   };
+
   return Wiki;
 };

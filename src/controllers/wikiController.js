@@ -52,7 +52,7 @@ module.exports = {
       if(err || wiki == null){
         res.redirect(404, "/");
       } else {
-        console.log(wiki)
+
           markdownView = markdown.toHTML(wiki.description);
           res.render("wikis/show", {wiki, markdownView});
       }

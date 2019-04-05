@@ -7,7 +7,10 @@ module.exports = {
     if (req.user) {
       collaboratorQueries.add(req, (err, collaborator) => {
         if (err) {
-          req.flash("error", err);
+          console.log(err);
+
+          req.flash("error", {param: '', msg: err});
+          console.log(err);
         }
         res.redirect(req.headers.referer);
       });

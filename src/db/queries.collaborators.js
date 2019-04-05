@@ -9,11 +9,13 @@ module.exports = {
         email: req.body.addCollaborator
       }
     })
+
       .then(user => {
+        console.log("this is the user:" + user);
         if (!user) {
-          return callback("User not found");
+          return callback("User not found, please ensure the user has signed up for an account.");
         } else if (user.id === req.user.id) {
-          return callback("Can not add yourself");
+          return callback("You cannot add yourself");
         }
         Collaborator.findOne({
           where: {
