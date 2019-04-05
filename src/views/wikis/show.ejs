@@ -19,7 +19,7 @@
         <br>
         <br>
 
-        <% if(currentUser) { %>
+        <% if(currentUser && wiki.private == true) { %>
               <% if( currentUser.role == 'premium' || currentUser.role == 'admin') { %>
                 <h1>Collaborators</h1>
                 <% if(wiki.collaborators) { %>
@@ -31,10 +31,10 @@
 
                                   <%= collaborator.User.email %>
                                   <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
-                      <form  action="/wikis/<%= wiki.id%>/collaborators/<%= collaborator.userId %>/remove" method="post">
+                                    <form  action="/wikis/<%= wiki.id%>/collaborators/<%= collaborator.userId %>/remove" method="post">
                                       <button type="submit" class="btn btn-danger">Remove</button>
                                       <input type="hidden" class="form-control" value="<%= `${collaborator.userId}` %>"
-                        style="text-align: center" aria-label="Text input with checkbox" readonly="readonly">
+                                      style="text-align: center" aria-label="Text input with checkbox" readonly="readonly">
                                     </form>
                                 <% } %>
                            </li>
