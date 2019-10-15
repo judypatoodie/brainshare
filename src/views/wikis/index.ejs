@@ -8,12 +8,11 @@
       <% include ../static/partials/navbar.ejs %>
 
       <h1>Wikis</h1>
-   
+        <% if(currentUser) { %>
       <a href="/wikis/new" class="btn btn-success">New Public Wiki</a>
-    
-
-
-
+      <% } else { %>
+        You must be signed in to create new Wikis
+        <% } %>
       <ul class="list-group">
         <% wikis.forEach((wiki) => { %>
             <% if( wiki.private == false ) { %>
